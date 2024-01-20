@@ -1,4 +1,4 @@
-const conn = require('../server/dbConnection').promise();
+const conn = require('../dbConnection').promise();
 
 exports.getTasksForLoggedInUser = async (req, res, next) => {
     const userId = req.params.userId; // Assuming userId is passed as a route parameter

@@ -1,4 +1,4 @@
-const conn = require('../server/dbConnection').promise();
+const conn = require('../dbConnection').promise();
 
 exports.toggleTaskInProgress = async (req, res, next) => {
     const taskId = req.params.taskId; // Assuming taskId is passed as a route parameter

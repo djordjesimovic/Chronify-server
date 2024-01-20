@@ -1,24 +1,24 @@
-const conn = require('../server/dbConnection').promise();
+const conn = require('../dbConnection').promise();
 
-exports.completeTask = async (req, res, next) => {
+exports.deleteTask = async (req, res, next) => {
     const taskId = req.params.taskId; // Assuming taskId is passed as a route parameter
 
     try {
         const [result] = await conn.execute(
-            "UPDATE `tasks` SET `taskCompleted` = true WHERE `taskId` = ? AND `taskCompleted` = false",
+            "DELETE FROM `tasks` WHERE `taskId` = ?",
             [taskId]
         );
 
         if (result.affectedRows > 0) {
             return res.json({
                 status: true,
-                message: "Task completed successfully"
+                message: "Task deleted successfully"
             });
         }
 
         res.json({
             status: false,
-            message: "Task not found or already completed"
+            message: "Task not found or already deleted"
         });
     } catch (err) {
         next(err);

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const {validationResult} = require('express-validator');
-const conn = require('../server/dbConnection').promise();
+const conn = require('../dbConnection').promise();
 
 
 exports.login = async (req,res,next) =>{

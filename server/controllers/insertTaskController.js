@@ -1,4 +1,4 @@
-const conn = require('../server/dbConnection').promise();
+const conn = require('../dbConnection').promise();
 
 exports.insertTask = async (req, res, next) => {
     const { userId, task, taskInfo, taskDeadline, taskImportance, taskCompleted, taskInProgress, taskDate, taskApproved } = req.body;

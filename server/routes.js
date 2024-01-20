@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const {body} = require('express-validator');
-const {register} = require('../controllers/registerController');
-const {login} = require('../controllers/loginController');
-const {getUser} = require('../controllers/getUserController');
-const {getAllUsers} = require('../controllers/getAllUsersController');
-const {deleteUser} = require('../controllers/deleteUserController');
-const { editUser } = require('../controllers/editUserController');
-const {insertTask} = require('../controllers/insertTaskController');
-const {getTasksForLoggedInUser} = require('../controllers/getTasksForLoggedInUserController');
-const {deleteTask} = require('../controllers/deleteTaskController');
-const {editTask} = require('../controllers/editTaskController');
-const {getAllTasks} = require('../controllers/getAllTasksController');
-const {completeTask} = require('../controllers/taskCompleteController');
-const {toggleTaskInProgress} = require ('../controllers/toggleTaskInProgressController');
-const {approveTask} = require('../controllers/approveTaskController');
+const {register} = require('./controllers/registerController');
+const {login} = require('./controllers/loginController');
+const {getUser} = require('./controllers/getUserController');
+const {getAllUsers} = require('./controllers/getAllUsersController');
+const {deleteUser} = require('./controllers/deleteUserController');
+const { editUser } = require('./controllers/editUserController');
+const {insertTask} = require('./controllers/insertTaskController');
+const {getTasksForLoggedInUser} = require('./controllers/getTasksForLoggedInUserController');
+const {deleteTask} = require('./controllers/deleteTaskController');
+const {editTask} = require('./controllers/editTaskController');
+const {getAllTasks} = require('./controllers/getAllTasksController');
+const {completeTask} = require('./controllers/taskCompleteController');
+const {toggleTaskInProgress} = require ('./controllers/toggleTaskInProgressController');
+const {approveTask} = require('./controllers/approveTaskController');
 
 router.post('/register', [
     body('username',"The username must be of minimum 3 characters length")
