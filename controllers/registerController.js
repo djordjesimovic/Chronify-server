@@ -1,6 +1,6 @@
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
-const conn = require('../dbConnection').promise();
+const conn = require('../server/dbConnection').promise();
 
 exports.register = async(req,res,next) => {
     const errors = validationResult(req);
@@ -22,13 +22,26 @@ exports.register = async(req,res,next) => {
                 status: 'false'
             });
         }
+        const [row2] = await conn.execute(
+            "SELECT `username` FROM `users` WHERE `username`=?",
+            [req.body.username]
+        )
+        if(row2.length > 0) {
+            return res.status(201).json({
+                message: "The Username is already in use",
+                status: 'false'
+            });
+        }
 
-        const hashPass = await bcrypt.hash(req.body.password, 12);
+        //const hashPass = await bcrypt.hash(req.body.password, 12);
 
-        const [rows] = await conn.execute('INSERT INTO `users`(`name`,`email`,`password`) VALUES(?,?,?)',[
-            req.body.name,
+        const [rows] = await conn.execute('INSERT INTO `users`(`firstName`, `lastName`, `username`,`email`,`password`, `userType`) VALUES(?,?,?,?,?,?)',[
+            req.body.firstName,
+            req.body.lastName,
+            req.body.username,
             req.body.email,
-            hashPass
+            req.body.password,
+            req.body.userType
         ]);
 
         if (rows.affectedRows === 1) {

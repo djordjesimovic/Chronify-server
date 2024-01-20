@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="dugme">Click</button>
+
+
+    <script>
+        document.getElementById('dugme').addEventListener('click', function() {
+            // fetch('http://localhost:5000/register', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         'firstName': 'Djordje',
+            //         'lastName': 'Simovic',
+            //         'username': 'djordjeSimovic',
+            //         'email': 'djordjesimovic@gmail.com',
+            //         'password': 'lozinka123',
+            //         'userType': 'admin'
+            //     })
+            // })
+            // fetch('http://localhost:5000/getAllUsers')
+            // .then(res => res.json())
+            // .then(data => console.log(data));
+            // console.log('test')
+            const taskData = {
+                userId: 2, // Replace with the actual user ID
+                task: 'Task Title',
+                taskInfo: 'Task details',
+                taskDeadline: '2022-12-31', // Replace with the actual deadline
+                taskImportance: 2,
+                taskCompleted: false,
+                taskInProgress: true,
+            }
+            fetch('http://localhost:5000/insertTask', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        userId: 2, // Replace with the actual user ID
+                        task: 'Task Title',
+                        taskInfo: 'Task details',
+                        taskDeadline: '2022-12-31', // Replace with the actual deadline
+                        taskImportance: 2,
+                        taskCompleted: false,
+                        taskInProgress: true,
+                        taskDate: '2022-12-31'
+                    }
+                ),
+            }).then(res => res.json()).then(data => console.log(data))
+        })
+    </script>
+    
+</body>
+
+</html>
